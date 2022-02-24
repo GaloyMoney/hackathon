@@ -234,7 +234,8 @@ To execute this mutation, you need to define the following variables:
 
 This operation converts the USD cent amount you specify into the equivalent satoshis and creates a lightning invoice with that amount.
 
-_**Note:** this lightning invoice expires after 2 minutes._
+_**Note:** this lightning invoice expires after 2 minutes.  Short expiry time because there is a USD/BTC exchange rate
+  associated with the amount.  When the invoice is paid the recipient is credited the originally requested USD amount._
 
 ## Subscribing to updates
 
