@@ -55,6 +55,10 @@ You can send USD-denominated payments over lightning or onchain, you can also se
 
 ## Sending USD over lightning
 
+There are multiple ways to send USD over lightning using our api.
+
+### Pay a no amount USD invoice
+
 Let's say someone requested a payment from you over the lightning network. They'll give you a lightning **payment request**. If that payment request does not have a predefined amount, you can use the following mutation to send any USD amount for it:
 
 ```gql
@@ -73,7 +77,7 @@ To execute this mutation, you need to define the following variables (bottom pan
 ```js
 {
   "input": {
-    "walletId": "YOUR_USD_WALLET_ID_HERE",
+    "walletId": "A_USD_WALLET_ID_HERE",
     "paymentRequest": "LIGHTNING_INVOICE_PAYMENT_REQUEST_HERE",
     "amount": AMOUNT_TO_SEND_IN_USD_CENTS,
     "memo": "OPTIONAL_NOTE_FOR_THE_RECEIVER"
@@ -84,6 +88,32 @@ To execute this mutation, you need to define the following variables (bottom pan
 Use the USD wallet ID from the previous `Me` query response. If you don't have a lightning payment request, you can generate one at `pay.bbw.sv/<username>`. For example, let's generate a payment request for the [New Story](https://newstorycharity.org/) charity organization. Under https://pay.bbw.sv/new_story, you'll see a QR code. Click on that code to copy the payment request string and use it in the `LnNoAmountUsdInvoicePaymentSend` mutation above to send any USD amount to New Story!
 
 If the payment was successful, the mutation response will have a `SUCCESS` value in the status field. If the payment was not successful, the response will include one or more errors for you to understand what went wrong.
+
+### Pay a lightning invoice to a USD wallet
+
+```gql
+  mutation lnInvoicePaymentSend($input: LnInvoicePaymentInput!) {
+    lnInvoicePaymentSend(input: $input) {
+      errors {
+        message
+      }
+      status
+    }
+  }
+```
+
+To execute this mutation, you need to define the following variables (bottom pane in the explorer):
+
+```js
+{
+  "input": {
+    "walletId": "A_USD_WALLET_ID_HERE",
+    "paymentRequest": "LIGHTNING_INVOICE_PAYMENT_REQUEST_HERE",
+    "memo": "OPTIONAL_NOTE_FOR_THE_RECEIVER"
+  }
+}
+```
+
 
 ## Requesting USD over lightning
 
