@@ -87,7 +87,9 @@ If the payment was successful, the mutation response will have a `SUCCESS` value
 
 ## Requesting USD over lightning
 
-Using the following mutation, you can generate a USD lightning invoice and send it to someone as a payment request:
+Using one of the following mutations, you can generate a USD lightning invoice and send it to someone as a payment request:
+
+### Create USD lightning invoice
 
 ```gql
 mutation LnUsdInvoiceCreate($input: LnUsdInvoiceCreateInput!) {
@@ -118,6 +120,33 @@ To execute this mutation, you need to define the following variables:
 This operation converts the USD cent amount you specify into the equivalent satoshis and creates a lightning invoice with that amount.
 
 _**Note:** this lightning invoice expires after 2 minutes._
+
+### Create no amount lightning invoice for a USD wallet
+
+```gql
+mutation LnNoAmountInvoiceCreate($input: LnNoAmountInvoiceCreateInput!) {
+ LnNoAmountInvoiceCreate(input: $input) {
+errors {
+      message
+    }
+    invoice {
+      paymentRequest
+      paymentHash
+    }
+    }
+    }
+```
+
+To execute this mutation, you need to define the following variables: 
+
+```js
+{
+  "input": {
+    "walletId": "YOUR_USD_WALLET_ID_HERE",
+    "memo": "OPTIONAL_NOTE_FOR_THE_SENDER"
+  }
+}
+```
 
 ## Creating a USD invoice on behalf of a Galoy API user
 
