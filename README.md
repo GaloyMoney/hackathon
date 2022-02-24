@@ -117,7 +117,7 @@ To execute this mutation, you need to define the following variables:
 
 This operation converts the USD cent amount you specify into the equivalent satoshis and creates a lightning invoice with that amount.
 
-Note: this lightning invoice expires after 2 minutes.
+_**Note:** this lightning invoice expires after 2 minutes._
 
 ## Creating a USD invoice on behalf of a Galoy API user
 
