@@ -212,8 +212,8 @@ WIP
 
 The username serves two purposes.
 
- 1. Allows users to make payments to each other internally to this environment using just the username.
- 2. Creates a lightning address which can be used to pay over the lightning network using the lnurl spec.
+1. Allows users to make payments to each other internally to this environment using just the username.
+2. Creates a lightning address which can be used to pay over the lightning network using the lnurl spec.
 
 ```gql
 mutation UserUpdateUsername ($userUpdateUsernameInput: UserUpdateUsernameInput!) {
