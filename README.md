@@ -53,6 +53,7 @@ The Galoy API supports sending and receiving payments that are denominated in BT
 
 You can send USD-denominated payments over lightning or onchain, you can also send direct payments to users of the Galoy API. These direct payments are settled immediately on the Galoy backend. We call them **intraledger** payments. Unlike lightning and onchain payments, intraledger payments have no fees. We'll see examples of intraledger transactions later in this tutorial but let's first start with an example using the lightning network.
 
+
 ## Sending USD over lightning
 
 There are multiple ways to send USD over lightning using our api.
@@ -149,7 +150,8 @@ To execute this mutation, you need to define the following variables:
 
 This operation converts the USD cent amount you specify into the equivalent satoshis and creates a lightning invoice with that amount.
 
-_**Note:** this lightning invoice expires after 2 minutes._
+_**Note:** this lightning invoice expires after 2 minutes. Short expiry time because there is a USD/BTC exchange rate
+  associated with the amount.  When the invoice is paid the recipient is credited the originally requested USD amount._
 
 ### Create no amount lightning invoice for a USD wallet
 
@@ -337,7 +339,9 @@ If you have a lightning wallet with available satoshis you can pay the invoice b
 
 ### Sending BTC to external wallet
 
-You can send any BTC amount to another wallet over lightning or onchain.  As an example let's say you want to send via lightning.
+You can send any BTC amount to another wallet over lightning or onchain.  
+
+#### Lightning
 
 ```gql
 mutation LnInvoicePaymentSend($input: LnInvoicePaymentInput!) {
@@ -361,6 +365,9 @@ mutation LnInvoicePaymentSend($input: LnInvoicePaymentInput!) {
 ```
 
 The API supports sending to a lightning invoice with a predefined amount using the `LnInvoicePaymentSend` or lightning invoice with no amount specificed using `lnNoAmountInvoicePaymentSend`.  Both of these mutations return a status field indicating the success or failure of the transaction.
+
+#### Onchain
+
 
 
 ### Getting help
