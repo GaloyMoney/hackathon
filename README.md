@@ -43,7 +43,9 @@ query Me {
 }
 ```
 
-You should see that your account has 2 wallets available, one BTC wallet, and one USD wallet. Each wallet should have a balance. The BTC wallet's balance is in satoshis and the USD wallet balance is in cents. 
+You should see that your account has 2 wallets available, each with a pre-funded balance:
+- one BTC wallet, in **satoshis**
+- one USD wallet, in **USD cents**
 
 _Keep a note of your wallet IDs as you will need them for later operations._
 
